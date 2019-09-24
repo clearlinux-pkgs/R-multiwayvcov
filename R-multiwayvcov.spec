@@ -4,20 +4,27 @@
 #
 Name     : R-multiwayvcov
 Version  : 1.2.3
-Release  : 21
+Release  : 22
 URL      : https://cran.r-project.org/src/contrib/multiwayvcov_1.2.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/multiwayvcov_1.2.3.tar.gz
 Summary  : Multi-Way Standard Error Clustering
 Group    : Development/Tools
 License  : BSD-2-Clause
+Requires: R-lfe
+Requires: R-lmtest
+Requires: R-sandwich
 BuildRequires : R-lfe
 BuildRequires : R-lmtest
 BuildRequires : R-sandwich
-BuildRequires : R-zoo
 BuildRequires : buildreq-R
 
 %description
-No detailed description available
+multi-way clustering using the method suggested by Cameron, Gelbach, &
+    Miller (2011) and cluster (or block)
+    bootstrapping for estimating variance-covariance matrices. Normal one and
+    two-way clustering matches the results of other common statistical
+    packages.  Missing values are handled transparently and rudimentary
+    parallelization support is provided.
 
 %prep
 %setup -q -c -n multiwayvcov
@@ -26,13 +33,13 @@ No detailed description available
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552884775
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1569365368
 
 %install
-export SOURCE_DATE_EPOCH=1552884775
+export SOURCE_DATE_EPOCH=1569365368
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -61,12 +68,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  multiwayvcov || :
+R CMD check --no-manual --no-examples --no-codoc multiwayvcov || :
 
 
 %files
