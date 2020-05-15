@@ -4,17 +4,13 @@
 #
 Name     : R-multiwayvcov
 Version  : 1.2.3
-Release  : 24
+Release  : 25
 URL      : https://cran.r-project.org/src/contrib/multiwayvcov_1.2.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/multiwayvcov_1.2.3.tar.gz
 Summary  : Multi-Way Standard Error Clustering
 Group    : Development/Tools
 License  : BSD-2-Clause
-Requires: R-lfe
-Requires: R-lmtest
 Requires: R-sandwich
-BuildRequires : R-lfe
-BuildRequires : R-lmtest
 BuildRequires : R-sandwich
 BuildRequires : buildreq-R
 
@@ -28,21 +24,22 @@ multi-way clustering using the method suggested by Cameron, Gelbach, &
 
 %prep
 %setup -q -c -n multiwayvcov
+cd %{_builddir}/multiwayvcov
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569365368
+export SOURCE_DATE_EPOCH=1589581066
 
 %install
-export SOURCE_DATE_EPOCH=1569365368
+export SOURCE_DATE_EPOCH=1589581066
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
