@@ -4,7 +4,7 @@
 #
 Name     : R-multiwayvcov
 Version  : 1.2.3
-Release  : 43
+Release  : 44
 URL      : https://cran.r-project.org/src/contrib/multiwayvcov_1.2.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/multiwayvcov_1.2.3.tar.gz
 Summary  : Multi-Way Standard Error Clustering
